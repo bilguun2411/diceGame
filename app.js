@@ -1,22 +1,13 @@
-// Toglogchinn eeljiig uurchilj, 1r toglolgchiig 0 , 2r toglogchiig 1 gej temdegley
-var activePlayer = 0;
 
-//Toglogchdiin onoo hadgalah huvisagch 
-var scores=[0,0];
-//Toglogchiin eeljind avch baigaa onoog hadgalah huvisagch
-var roundScore = 0;
-//Shoonii ali talaaraa buuj bgaag hadgalah huvisagch heregtei 
 
-//Program ehlehed beltgeh
-window.document.getElementById('score-0').textContent = 0;
-window.document.getElementById('current-0').textContent = 0;
-document.getElementById('score-1').textContent = 0;
-document.getElementById('current-1').textContent = 0;
-
-//ehelhees umnu shoonii zurag arilgah
+//shoonii zurgiig dom -s olood end hadgalna
 var diceDom = document.querySelector('.dice');
-diceDom.style.display='none';
 
+//togloomonod ashiglagdah global huvisagchdiig haruulay
+var scores,activePlayer,roundScore;
+
+//togloomiig ehluulen
+initGame();
 
 //shoog shideh event listener
 document.querySelector('.btn-roll').addEventListener('click',function(){
@@ -52,7 +43,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
     roundScore=0
     document.getElementById('current-'+activePlayer).textContent =0;
     //ug toglogch hojson esehiigshalgah
-    if(scores[activePlayer]>=20){
+    if(scores[activePlayer]>=10){
         //ylahgch gsen text g nernii orond gargana
         document.getElementById('name-'+ activePlayer).textContent='Ylagch !!!!'
         document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');   
@@ -82,6 +73,44 @@ function switchToNextPlayer(){
     //shoog tur alga bolgoh
     diceDom.style.display='none'
 
+};
+
+
+//Shine togloom ehluuleh 
+document.querySelector('.btn-new').addEventListener('click',initGame);
+
+
+//TOgloomiig shineeer ehlehed beltgeh 
+function initGame(){
+    // Toglogchinn eeljiig uurchilj, 1r toglolgchiig 0 , 2r toglogchiig 1 gej temdegley
+    activePlayer = 0;
+
+    //Toglogchdiin onoo hadgalah huvisagch 
+    scores=[0,0];
+    //Toglogchiin eeljind avch baigaa onoog hadgalah huvisagch
+    roundScore = 0;
+    //Shoonii ali talaaraa buuj bgaag hadgalah huvisagch heregtei 
+
+    //Program ehlehed beltgeh
+    window.document.getElementById('score-0').textContent = 0;
+    window.document.getElementById('current-0').textContent = 0;
+    document.getElementById('score-1').textContent = 0;
+    document.getElementById('current-1').textContent = 0;
+
+    //toglogchdiin neriig heviin bolgoh
+    document.getElementById('name-0').textContent= 'Player-1';
+    document.getElementById('name-1').textContent= 'Player-2';
+
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    
+    document.querySelector('.player-0-panel').classList.add('active');
+
+    //ehelhees umnu shoonii zurag arilgah  
+    diceDom.style.display='none';
 };
 
 
